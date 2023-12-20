@@ -15,7 +15,8 @@ import Geography from "./pages/geography/Geography";
 import Invoices from "./pages/invoices/Invoices";
 
 import TopBar from "./global/TopBar";
-import Sidebar from "./global/Sidebar";
+import SidebarMenu from "./global/SidebarMenu";
+import Header from "./components/Header";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -26,10 +27,11 @@ function App() {
         <CssBaseline />
         <div className="app">
           <aside>
-            <Sidebar />
+            <SidebarMenu />
           </aside>
           <main className="content">
             <TopBar />
+            <Header />
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
