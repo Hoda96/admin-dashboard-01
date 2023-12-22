@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import Header from "../../components/Header";
+import LineChart from "../../components/LineChart";
 
 function Line() {
   return (
@@ -9,8 +10,9 @@ function Line() {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <Header title="Line" subtitle="Welcome to your Contacts" />
+        <Header title="Line Chart" subtitle="Welcome toLine Chart" />
       </Box>
+      <LineChart />
     </Box>
   );
 }

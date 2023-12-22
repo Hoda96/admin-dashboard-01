@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import Header from "../../components/Header";
+import PieChart from "../../components/PieChart";
 
 function Pie() {
   return (
@@ -9,8 +10,9 @@ function Pie() {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <Header title="Contacts" subtitle="Welcome to your Contacts" />
+        <Header title="Pie Chart" subtitle="Welcome to Pie Chart" />
       </Box>
+      <PieChart />
     </Box>
   );
 }

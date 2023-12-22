@@ -8,6 +8,7 @@ import { useTheme } from "@emotion/react";
 import { tokens } from "../../theme";
 import { useState } from "react";
 import { formatDate } from "@fullcalendar/core";
+import listPlugin from "@fullcalendar/list";
 
 function Calendar() {
   const theme = useTheme();
@@ -28,6 +29,7 @@ function Calendar() {
         allDay: selected.allDay,
       });
     }
+    console.log("selected", selected);
   };
 
   const handleEventClick = (selected) => {
@@ -97,7 +99,7 @@ function Calendar() {
               dayGridPlugin,
               timeGridPlugin,
               interactionPlugin,
-              // listPlugin,
+              listPlugin,
             ]}
             headerToolbar={{
               left: "prev,next today",

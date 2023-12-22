@@ -9,5 +9,8 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      global = globalThis; //<- this should be enough for not crashing App while using NIVO CHARTyarn add @nivo/core
+    </script>
   </body>
 </html>

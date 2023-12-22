@@ -1,6 +1,5 @@
 import { useTheme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
-
 import PropTypes from "prop-types";
 import { tokens } from "../theme";
 

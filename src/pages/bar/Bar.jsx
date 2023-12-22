@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import Header from "../../components/Header";
+import BarChart from "../../components/BarChart";
 
 function Bar() {
   return (
@@ -9,8 +10,9 @@ function Bar() {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <Header title="Contacts" subtitle="Welcome to Bar" />
+        <Header title="Bar Chart" subtitle="Welcome to Bar Chart" />
       </Box>
+      <BarChart />
     </Box>
   );
 }
