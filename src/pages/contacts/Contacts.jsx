@@ -105,10 +105,30 @@ function Contacts() {
           slots={{
             toolbar: GridToolbar,
           }}
+          sx={{
+            "& .MuiButton-startIcon": {
+              color: colors.grey[100],
+            },
+            "& .MuiButton-textPrimary": {
+              color: colors.grey[100],
+            },
+            "& ..MuiDataGrid-withBorderColor:active": {
+              color: colors.grey[100],
+            },
+          }}
         />
       </Box>
     </Box>
   );
 }
-
+// function CustomToolbar() {
+//   return (
+//     <GridToolbarContainer>
+//       <GridToolbarColumnsButton />
+//       <GridToolbarFilterButton />
+//       <GridToolbarDensitySelector />
+//       <GridToolbarExport />
+//     </GridToolbarContainer>
+//   );
+// }
 export default Contacts;

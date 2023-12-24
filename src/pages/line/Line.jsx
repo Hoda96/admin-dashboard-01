@@ -12,7 +12,9 @@ function Line() {
       >
         <Header title="Line Chart" subtitle="Welcome toLine Chart" />
       </Box>
-      <LineChart />
+      <Box height={"75vh"}>
+        <LineChart />
+      </Box>
     </Box>
   );
 }

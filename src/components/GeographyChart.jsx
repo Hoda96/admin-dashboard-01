@@ -1,11 +1,47 @@
 import { ResponsiveChoropleth } from "@nivo/geo";
 import { geoFeatures } from "../data/mockGeoFeatures";
 import { mockGeographyData as data } from "../data/mockData";
+import { useTheme } from "@emotion/react";
+import { tokens } from "../theme";
 
 function GeographyChart() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
   return (
     <ResponsiveChoropleth
       data={data}
+      theme={{
+        axis: {
+          domain: {
+            line: { stroke: colors.grey[100] },
+          },
+        },
+        legend: {
+          text: {
+            fill: { color: colors.grey[100] },
+          },
+          ticks: {
+            line: {
+              stroke: colors.grey[100],
+              strokeWidth: 1,
+            },
+            text: {
+              fill: { color: colors.grey[100] },
+            },
+          },
+        },
+        legends: {
+          text: {
+            fill: { color: colors.grey[100] },
+          },
+        },
+        tooltip: {
+          container: {
+            color: colors.primary[500],
+          },
+        },
+      }}
       features={geoFeatures.features}
       margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
       colors="nivo"

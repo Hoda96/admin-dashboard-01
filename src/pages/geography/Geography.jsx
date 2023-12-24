@@ -12,7 +12,9 @@ function Geography() {
       >
         <Header title="Contacts" subtitle="Welcome to Geo" />
       </Box>
-      <GeographyChart />
+      <Box height={"75vh"}>
+        <GeographyChart />
+      </Box>
     </Box>
   );
 }

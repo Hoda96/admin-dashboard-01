@@ -1,10 +1,11 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Header from "../../components/Header";
 // import BarChart from "../../components/BarChart";
 // import PieChart from "../../components/PieChart";
 import StatBox from "../../components/StatBox";
 import {
   Download,
+  DownloadOutlined,
   Email,
   PersonAdd,
   PointOfSale,
@@ -12,6 +13,7 @@ import {
 } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
 import { tokens } from "../../theme";
+import BarChart from "../../components/BarChart";
 
 function Dashboard() {
   const theme = useTheme();
@@ -110,10 +112,29 @@ function Dashboard() {
         <Box
           gridColumn={"span 8"}
           backgroundColor={colors.primary[400]}
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-        ></Box>
+          padding={"20px"}
+        >
+          <Box
+            display={"flex"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+          >
+            <Box>
+              <Typography variant="h6" fontSize={"16px"}>
+                Revenue Generated
+              </Typography>
+              <Typography
+                variant="h4"
+                fontWeight={"bold"}
+                fontSize={"24px"}
+                sx={{ color: colors.greenAccent[500] }}
+              >
+                $59,325,478
+              </Typography>
+            </Box>
+            <DownloadOutlined sx={{ color: colors.greenAccent[500] }} />
+          </Box>
+        </Box>
         <Box
           gridColumn={"span 4"}
           backgroundColor={colors.primary[400]}
@@ -142,7 +163,9 @@ function Dashboard() {
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
-        ></Box>
+        >
+          <BarChart isDashboard="true" />
+        </Box>
       </Box>
     </Box>
   );

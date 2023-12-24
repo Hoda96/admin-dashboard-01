@@ -1,10 +1,45 @@
+import { useTheme } from "@emotion/react";
 import { mockPieData as data } from "../data/mockData";
 import { ResponsivePie } from "@nivo/pie";
+import { tokens } from "../theme";
 
 function PieChart() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   return (
     <ResponsivePie
       data={data}
+      theme={{
+        axis: {
+          domain: {
+            line: { stroke: colors.grey[100] },
+          },
+        },
+        legend: {
+          text: {
+            fill: { color: colors.grey[100] },
+          },
+          ticks: {
+            line: {
+              stroke: colors.grey[100],
+              strokeWidth: 1,
+            },
+            text: {
+              fill: { color: colors.grey[100] },
+            },
+          },
+        },
+        legends: {
+          text: {
+            fill: { color: colors.grey[100] },
+          },
+        },
+        tooltip: {
+          container: {
+            color: colors.primary[500],
+          },
+        },
+      }}
       margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
       innerRadius={0.5}
       padAngle={0.7}
@@ -16,7 +51,7 @@ function PieChart() {
         modifiers: [["darker", 0.2]],
       }}
       arcLinkLabelsSkipAngle={10}
-      arcLinkLabelsTextColor="#333333"
+      arcLinkLabelsTextColor={colors.grey[100]}
       arcLinkLabelsThickness={2}
       arcLinkLabelsColor={{ from: "color" }}
       arcLabelsSkipAngle={10}
@@ -44,56 +79,6 @@ function PieChart() {
           spacing: 10,
         },
       ]}
-      fill={[
-        {
-          match: {
-            id: "ruby",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "c",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "go",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "python",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "scala",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "lisp",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "elixir",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "javascript",
-          },
-          id: "lines",
-        },
-      ]}
       legends={[
         {
           anchor: "bottom",
@@ -113,7 +98,7 @@ function PieChart() {
             {
               on: "hover",
               style: {
-                itemTextColor: "#000",
+                itemTextColor: "#f2f2f2",
               },
             },
           ],

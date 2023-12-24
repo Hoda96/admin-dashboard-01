@@ -1,10 +1,49 @@
 import { ResponsiveLine } from "@nivo/line";
 import { mockLineData as data } from "../data/mockData";
+import { useTheme } from "@emotion/react";
+import { tokens } from "../theme";
 
-function LineChart() {
+import PropTypes from "prop-types";
+
+function LineChart({ isDashboard }) {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
   return (
     <ResponsiveLine
       data={data}
+      theme={{
+        axis: {
+          domain: {
+            line: { stroke: colors.grey[100] },
+          },
+        },
+        legend: {
+          text: {
+            fill: { color: colors.grey[100] },
+          },
+          ticks: {
+            line: {
+              stroke: colors.grey[100],
+              strokeWidth: 1,
+            },
+            text: {
+              fill: { color: colors.grey[100] },
+            },
+          },
+        },
+        legends: {
+          text: {
+            fill: { color: colors.grey[100] },
+          },
+        },
+        tooltip: {
+          container: {
+            color: colors.primary[500],
+          },
+        },
+      }}
+      colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }}
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: "point" }}
       yScale={{
@@ -22,7 +61,7 @@ function LineChart() {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "transportation",
+        legend: isDashboard ? undefined : "transportation",
         legendOffset: 36,
         legendPosition: "middle",
       }}
@@ -30,7 +69,7 @@ function LineChart() {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "count",
+        legend: isDashboard ? undefined : "count",
         legendOffset: -40,
         legendPosition: "middle",
       }}
@@ -71,5 +110,7 @@ function LineChart() {
     />
   );
 }
-
+LineChart.propTypes = {
+  isDashboard: PropTypes.bool,
+};
 export default LineChart;

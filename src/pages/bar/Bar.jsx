@@ -12,7 +12,9 @@ function Bar() {
       >
         <Header title="Bar Chart" subtitle="Welcome to Bar Chart" />
       </Box>
-      <BarChart />
+      <Box height={"75vh"}>
+        <BarChart />
+      </Box>
     </Box>
   );
 }

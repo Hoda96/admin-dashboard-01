@@ -12,7 +12,9 @@ function Pie() {
       >
         <Header title="Pie Chart" subtitle="Welcome to Pie Chart" />
       </Box>
-      <PieChart />
+      <Box height={"75vh"}>
+        <PieChart />
+      </Box>
     </Box>
   );
 }

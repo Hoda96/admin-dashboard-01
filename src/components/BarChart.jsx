@@ -1,15 +1,47 @@
 import { ResponsiveBar } from "@nivo/bar";
 import { mockBarData as data } from "../data/mockData";
-// import { useTheme } from "@emotion/react";
-// import { tokens } from "../theme";
+import { useTheme } from "@emotion/react";
+import { tokens } from "../theme";
+import PropTypes from "prop-types";
 
-function BarChart() {
-  //   const theme = useTheme();
-  //   const colors = tokens(theme.palette.mode);
+function BarChart({ isDashboard }) {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
   return (
     <ResponsiveBar
       data={data}
+      theme={{
+        axis: {
+          domain: {
+            line: { stroke: colors.grey[100] },
+          },
+        },
+        legend: {
+          text: {
+            fill: { color: colors.grey[100] },
+          },
+          ticks: {
+            line: {
+              stroke: colors.grey[100],
+              strokeWidth: 1,
+            },
+            text: {
+              fill: { color: colors.grey[100] },
+            },
+          },
+        },
+        legends: {
+          text: {
+            fill: { color: colors.grey[100] },
+          },
+        },
+        tooltip: {
+          container: {
+            color: colors.primary[500],
+          },
+        },
+      }}
       keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
       indexBy="country"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
@@ -37,20 +69,6 @@ function BarChart() {
           spacing: 10,
         },
       ]}
-      fill={[
-        {
-          match: {
-            id: "fries",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "sandwich",
-          },
-          id: "lines",
-        },
-      ]}
       borderColor={{
         from: "color",
         modifiers: [["darker", 1.6]],
@@ -61,7 +79,7 @@ function BarChart() {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "country",
+        legend: isDashboard ? undefined : "country",
         legendPosition: "middle",
         legendOffset: 32,
         truncateTickAt: 0,
@@ -70,7 +88,7 @@ function BarChart() {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "food",
+        legend: isDashboard ? undefined : "food",
         legendPosition: "middle",
         legendOffset: -40,
         truncateTickAt: 0,
@@ -112,5 +130,7 @@ function BarChart() {
     />
   );
 }
-
+BarChart.propTypes = {
+  isDashboard: PropTypes.bool,
+};
 export default BarChart;
