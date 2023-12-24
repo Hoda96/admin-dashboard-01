@@ -10,7 +10,7 @@ function Geography() {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <Header title="Contacts" subtitle="Welcome to Geo" />
+        <Header title="Geographic Chart" subtitle="Welcome to Geo" />
       </Box>
       <Box height={"75vh"}>
         <GeographyChart />

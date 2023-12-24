@@ -3,8 +3,9 @@ import { geoFeatures } from "../data/mockGeoFeatures";
 import { mockGeographyData as data } from "../data/mockData";
 import { useTheme } from "@emotion/react";
 import { tokens } from "../theme";
+import PropTypes from "prop-types";
 
-function GeographyChart() {
+function GeographyChart({ isDashboard = false }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -49,7 +50,8 @@ function GeographyChart() {
       unknownColor="#666666"
       label="properties.name"
       valueFormat=".2s"
-      projectionTranslation={[0.5, 0.5]}
+      projectionScale={isDashboard ? 40 : 150}
+      projectionTranslation={isDashboard ? [0.49, 0.6] : [0.5, 0.5]}
       projectionRotation={[0, 0, 0]}
       enableGraticule={true}
       graticuleLineColor="#dddddd"
@@ -109,33 +111,40 @@ function GeographyChart() {
           id: "gradient",
         },
       ]}
-      legends={[
-        {
-          anchor: "bottom-left",
-          direction: "column",
-          justify: true,
-          translateX: 20,
-          translateY: -100,
-          itemsSpacing: 0,
-          itemWidth: 94,
-          itemHeight: 18,
-          itemDirection: "left-to-right",
-          itemTextColor: "#444444",
-          itemOpacity: 0.85,
-          symbolSize: 18,
-          effects: [
-            {
-              on: "hover",
-              style: {
-                itemTextColor: "#000000",
-                itemOpacity: 1,
+      legends={
+        !isDashboard
+          ? [
+              {
+                anchor: "bottom-left",
+                direction: "column",
+                justify: true,
+                translateX: 20,
+                translateY: -100,
+                itemsSpacing: 0,
+                itemWidth: 94,
+                itemHeight: 18,
+                itemDirection: "left-to-right",
+                itemTextColor: "#444444",
+                itemOpacity: 0.85,
+                symbolSize: 18,
+                effects: [
+                  {
+                    on: "hover",
+                    style: {
+                      itemTextColor: "#000000",
+                      itemOpacity: 1,
+                    },
+                  },
+                ],
               },
-            },
-          ],
-        },
-      ]}
+            ]
+          : undefined
+      }
     />
   );
 }
 
+GeographyChart.propTypes = {
+  isDashboard: PropTypes.bool,
+};
 export default GeographyChart;

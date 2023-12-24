@@ -1,7 +1,5 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import Header from "../../components/Header";
-// import BarChart from "../../components/BarChart";
-// import PieChart from "../../components/PieChart";
 import StatBox from "../../components/StatBox";
 import {
   Download,
@@ -14,6 +12,10 @@ import {
 import { useTheme } from "@emotion/react";
 import { tokens } from "../../theme";
 import BarChart from "../../components/BarChart";
+import LineChart from "../../components/LineChart";
+import GeographyChart from "../../components/GeographyChart";
+import { mockTransactions } from "../../data/mockData";
+import ProgressCircle from "../../components/ProgressCircle";
 
 function Dashboard() {
   const theme = useTheme();
@@ -111,6 +113,7 @@ function Dashboard() {
         {/* Row #2 */}
         <Box
           gridColumn={"span 8"}
+          gridRow={"span 2"}
           backgroundColor={colors.primary[400]}
           padding={"20px"}
         >
@@ -120,7 +123,7 @@ function Dashboard() {
             alignItems={"center"}
           >
             <Box>
-              <Typography variant="h6" fontSize={"16px"}>
+              <Typography variant="h5" fontSize={"16px"}>
                 Revenue Generated
               </Typography>
               <Typography
@@ -132,39 +135,143 @@ function Dashboard() {
                 $59,325,478
               </Typography>
             </Box>
-            <DownloadOutlined sx={{ color: colors.greenAccent[500] }} />
+            <IconButton>
+              <DownloadOutlined
+                sx={{ color: colors.greenAccent[500], fontSize: "26px" }}
+              />
+            </IconButton>
+          </Box>
+          <Box height={"250px"}>
+            <LineChart isDashboard="true" />
           </Box>
         </Box>
         <Box
           gridColumn={"span 4"}
+          gridRow={"span 2"}
           backgroundColor={colors.primary[400]}
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-        ></Box>
+          // display={"flex"}
+          // justifyContent={"center"}
+          // alignItems={"center"}
+          overflow={"auto"}
+          p={"1rem"}
+        >
+          <Box
+            display={"flex"}
+            justifyContent={"space-between"}
+            borderBottom={`4px solid ${colors.primary[500]}`}
+            color={colors.grey[100]}
+            p={"1rem"}
+          >
+            <Typography
+              variant="h5"
+              fontWeight={"600"}
+              color={colors.grey[100]}
+            >
+              Recent Transactions
+            </Typography>
+          </Box>
+          {mockTransactions.map((transaction, i) => (
+            <Box
+              key={`${transaction.txId}-${i}`}
+              display={"flex"}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+              borderBottom={`4px solid ${colors.primary[500]}`}
+              color={colors.grey[100]}
+              p={"1rem"}
+            >
+              <Box>
+                <Typography
+                  variant="h5"
+                  fontWeight={"600"}
+                  color={colors.greenAccent[500]}
+                >
+                  {transaction.txId}
+                </Typography>
+                <Typography color={colors.grey[100]}>
+                  {transaction.user}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography color={colors.grey[100]}>
+                  {transaction.date}
+                </Typography>
+              </Box>
+              <Box
+                backgroundColor={colors.greenAccent[500]}
+                p={"6px 10px"}
+                borderRadius={"4px"}
+              >
+                <Typography color={colors.grey[100]}>
+                  {transaction.cost}
+                </Typography>
+              </Box>
+            </Box>
+          ))}
+        </Box>
         {/* Row #3 */}
         <Box
           gridColumn={"span 4"}
+          gridRow={"span 2"}
           backgroundColor={colors.primary[400]}
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-        ></Box>
-        <Box
-          gridColumn={"span 4"}
-          backgroundColor={colors.primary[400]}
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-        ></Box>
-        <Box
-          gridColumn={"span 4"}
-          backgroundColor={colors.primary[400]}
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
+          p={"1rem"}
         >
-          <BarChart isDashboard="true" />
+          <Typography variant="h5" fontSize={"16px"}>
+            Campaign
+          </Typography>
+
+          <Box
+            display={"flex"}
+            flexDirection={"column"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            gap={"1.5rem"}
+            mt={"2rem"}
+          >
+            <ProgressCircle progress="0.6" size="130" />
+
+            <Box>
+              <Typography
+                variant="h5"
+                color={colors.greenAccent[500]}
+                fontWeight={"600"}
+                textAlign={"center"}
+              >
+                $48,352 revenue generated
+              </Typography>
+              <Typography variant="h5" fontSize={"14px"} textAlign={"center"}>
+                Includes extra misc expenditures and costs
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          gridColumn={"span 4"}
+          gridRow={"span 2"}
+          backgroundColor={colors.primary[400]}
+          gap={"1.5rem"}
+          p={"1rem"}
+        >
+          <Typography variant="h5" fontSize={"16px"}>
+            Sale Quantity
+          </Typography>
+          <Box height="250px" width={"350px"}>
+            <BarChart isDashboard="true" />
+          </Box>
+        </Box>
+        <Box
+          gridColumn={"span 4"}
+          gridRow={"span 2"}
+          backgroundColor={colors.primary[400]}
+          gap={"1.5rem"}
+          p={"1rem"}
+        >
+          <Typography variant="h5" fontSize={"16px"}>
+            Sale Quantity
+          </Typography>
+          <Box height="250px">
+            <GeographyChart isDashboard="true" />
+          </Box>
         </Box>
       </Box>
     </Box>
